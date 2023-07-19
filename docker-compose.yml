@@ -1,0 +1,19 @@
+services:
+  similarity-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    depends_on:
+      - database
+    env_file:
+      - .env
+    command: python similarity_server.py
+
+  database:
+    image: postgres
+    ports:
+      - 5432:5431
+    env_file:
+      - .env
